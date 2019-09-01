@@ -21,15 +21,31 @@ def color_producer(elevation):
 
 map = folium.Map(location=[38.58,-99.89],zoom_start=5, tiles="Stamen Terrain")
 
-fg = folium.FeatureGroup(name="My Map")
+fgv = folium.FeatureGroup(name="Volcanoes")
 # looping the map to get all the data
 for lt, ln, el in zip(lat, lon, elev):
 # folium.Marker for normal map spot "icon=folium.Icon(color=color_producer(el)""
 # folium.CircleMarker for circle also we use radius color opacity
-    fg.add_child(folium.CircleMarker(location=[lt, ln], radius = 6, popup=str(el)+" mukilan", 
+    fgv.add_child(folium.CircleMarker(location=[lt, ln], radius = 6, popup=str(el)+" mukilan", 
     fill_color=color_producer(el), color = 'grey', fill_opacity=0.7))
 
-map.add_child(fg)
+fgp = folium.FeatureGroup(name="Population")
+
+# json added to a variable and Note:- the recent version of folium needs a string insted of
+# file data input. Therfore you need to add utf.read() method
+fgp.add_child(folium.GeoJson(data=open('world.json', 'r', encoding='utf-8-sig').read(), 
+style_function=lambda x: {'fillColor':'green' if x['properties']['POP2005'] < 10000000 
+else 'orange' if 10000000 <= x['properties']['POP2005'] < 20000000 else 'red'}))
+
+
+# LayerControl for Volcanoes
+map.add_child(fgv)
+# LayerControl for Population
+map.add_child(fgp)
+# LayerControl is a empty map
+map.add_child(folium.LayerControl())
+
+
 # finaly if we save the file and run html will generat auto
 map.save("Map1.html")
 
