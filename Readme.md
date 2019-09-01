@@ -8,7 +8,7 @@ We need to download the "Volcanoes.txt" also along with the "main.py"
 
 After downloading the folder run "python3 main.py" in terminal if you use vscode editor run the live server you will get the web view 
 
-#Installing
+# Installing
 
     pre install pip system 
 
