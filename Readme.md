@@ -8,6 +8,14 @@ We need to download the "Volcanoes.txt" also along with the "main.py"
 
 After downloading the folder run "python3 main.py" in terminal if you use vscode editor run the live server you will get the web view 
 
+#Installing
+
+    pre install pip system 
+
+    pandas-pip install pandas or pip3 install pandas(in project file terminal)
+
+    folium-pip install folium(in project file terminal)
+
 # Running the tests
 
 main.py need's Volcanoes.txt to load the location data because all the location are saved in the text file.
